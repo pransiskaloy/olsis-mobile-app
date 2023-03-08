@@ -2,6 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:olsis/widgets/announcement.dart';
+import 'package:olsis/widgets/category.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -19,18 +20,18 @@ class _DashboardState extends State<Dashboard> {
           Container(
             height: 215,
             width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage('images/dashboard.png'),
               ),
             ),
             child: Column(children: [
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Container(
-                padding: EdgeInsets.only(left: 15, right: 25),
+                padding: const EdgeInsets.only(left: 15, right: 25),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -46,7 +47,7 @@ class _DashboardState extends State<Dashboard> {
                       child: Badge(
                         showBadge: true,
                         toAnimate: false,
-                        badgeContent: Text(
+                        badgeContent: const Text(
                           '',
                           style: TextStyle(color: Colors.white),
                         ),
@@ -61,11 +62,11 @@ class _DashboardState extends State<Dashboard> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Container(
-                padding: EdgeInsets.only(left: 40),
+                padding: const EdgeInsets.only(left: 40),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -96,7 +97,7 @@ class _DashboardState extends State<Dashboard> {
               )
             ]),
           ),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
           Padding(
@@ -108,7 +109,7 @@ class _DashboardState extends State<Dashboard> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(right: 25),
+                    padding: const EdgeInsets.only(right: 25),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,7 +119,7 @@ class _DashboardState extends State<Dashboard> {
                           style: GoogleFonts.dongle(
                             fontWeight: FontWeight.bold,
                             fontSize: 30,
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                               height: 1,
                               color: Color.fromARGB(255, 124, 148, 233),
                             ),
@@ -129,7 +130,7 @@ class _DashboardState extends State<Dashboard> {
                           style: GoogleFonts.dongle(
                             fontWeight: FontWeight.w100,
                             fontSize: 25,
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                               height: 1,
                               color: Color.fromARGB(255, 124, 148, 233),
                             ),
@@ -141,13 +142,17 @@ class _DashboardState extends State<Dashboard> {
                   //Announcement Widget
                   Padding(
                     padding: const EdgeInsets.only(right: 20),
-                    child: Announcement(),
+                    child: Announcement(
+                        day: "27",
+                        month: "Mar",
+                        title: "TERM BREAK",
+                        content: "No class until April 19 up to 23"),
                   ),
                 ],
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Padding(
@@ -172,7 +177,26 @@ class _DashboardState extends State<Dashboard> {
                   //Categories Widget
                   Padding(
                     padding: const EdgeInsets.only(right: 20),
-                    child: Announcement(),
+                    child: Row(
+                      children: [
+                        Category(
+                          image: Image.asset(
+                            "images/balance.png",
+                            height: 40,
+                            width: 40,
+                          ),
+                          title: "Balance",
+                        ),
+                        Category(
+                          image: Image.asset(
+                            "images/balance.png",
+                            height: 40,
+                            width: 40,
+                          ),
+                          title: "Enrollment",
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

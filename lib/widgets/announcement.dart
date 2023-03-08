@@ -3,17 +3,27 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:olsis/widgets/constants.dart';
 
 class Announcement extends StatefulWidget {
-  const Announcement({Key? key}) : super(key: key);
+  String? day;
+  String? month;
+  String? title;
+  String? content;
+
+  Announcement({this.day, this.month, this.title, this.content});
 
   @override
   State<Announcement> createState() => _AnnouncementState();
 }
 
 class _AnnouncementState extends State<Announcement> {
+  // String day = "27";
+  // String month = "Mar";
+  // String title = "TERM BREAK";
+  // String content = "No class until April 19 up to 23";
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
+      padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
       height: 100,
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
@@ -30,14 +40,14 @@ class _AnnouncementState extends State<Announcement> {
       ),
       child: Row(children: [
         Container(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          decoration: const BoxDecoration(
             color: Color.fromARGB(255, 231, 246, 252),
             borderRadius: BorderRadius.all(Radius.circular(15)),
           ),
           child: Column(children: [
             Text(
-              "27",
+              widget.day ?? "",
               style: GoogleFonts.montserrat(
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
@@ -47,7 +57,7 @@ class _AnnouncementState extends State<Announcement> {
               ),
             ),
             Text(
-              "Mar",
+              widget.month ?? "",
               style: GoogleFonts.montserrat(
                 fontWeight: FontWeight.bold,
                 fontSize: 25,
@@ -59,7 +69,7 @@ class _AnnouncementState extends State<Announcement> {
             ),
           ]),
         ),
-        SizedBox(
+        const SizedBox(
           width: 10,
         ),
         Column(
@@ -67,7 +77,7 @@ class _AnnouncementState extends State<Announcement> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "TERM BREAK",
+              widget.title ?? "",
               style: GoogleFonts.montserrat(
                 fontWeight: FontWeight.bold,
                 fontSize: 27,
@@ -78,7 +88,7 @@ class _AnnouncementState extends State<Announcement> {
               ),
             ),
             Text(
-              "No class until April...",
+              widget.content?.substring(0, 20) ?? "",
               style: GoogleFonts.montserrat(
                 fontWeight: FontWeight.w300,
                 fontSize: 17,
@@ -88,11 +98,11 @@ class _AnnouncementState extends State<Announcement> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 9,
             ),
             GestureDetector(
-              child: Text(
+              child: const Text(
                 "Read More . . .",
                 style: TextStyle(
                   color: Color.fromARGB(255, 201, 201, 201),

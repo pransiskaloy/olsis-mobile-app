@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:olsis/pages/billing.dart';
+import 'package:olsis/pages/payment.dart';
 import 'package:olsis/pages/dashboard.dart';
 import 'package:olsis/pages/logs.dart';
 import 'package:olsis/pages/profile.dart';
 import 'package:olsis/pages/qr.dart';
+import 'package:olsis/widgets/constants.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class _HomeState extends State<Home> {
   int currentTab = 0;
   final List<Widget> screens = [
     Dashboard(),
-    Billing(),
+    Payments(),
     QR(),
     Logs(),
     Profile()
@@ -70,9 +71,19 @@ class _HomeState extends State<Home> {
                           Icons.dashboard_rounded,
                           size: 35,
                           color: currentTab == 0
-                              ? Color(0xFF44A0EB)
-                              : Color.fromARGB(255, 201, 201, 201),
+                              ? UiConstants.buttonFocusColor
+                              : UiConstants.buttonUnfocusColor,
                         ),
+                        currentTab == 0
+                            ? Text(
+                                "Home",
+                                style: GoogleFonts.montserrat(
+                                  textStyle: TextStyle(
+                                    color: UiConstants.textSubTitleColor,
+                                  ),
+                                ),
+                              )
+                            : Container(),
                       ],
                     ),
                   ),
@@ -80,7 +91,7 @@ class _HomeState extends State<Home> {
                     minWidth: 40,
                     onPressed: () {
                       setState(() {
-                        currentScreen = Billing();
+                        currentScreen = Payments();
                         currentTab = 1;
                       });
                     },
@@ -91,9 +102,19 @@ class _HomeState extends State<Home> {
                           Icons.credit_card_rounded,
                           size: 35,
                           color: currentTab == 1
-                              ? Color(0xFF44A0EB)
-                              : Color.fromARGB(255, 201, 201, 201),
+                              ? UiConstants.buttonFocusColor
+                              : UiConstants.buttonUnfocusColor,
                         ),
+                        currentTab == 1
+                            ? Text(
+                                "Payments",
+                                style: GoogleFonts.montserrat(
+                                  textStyle: TextStyle(
+                                    color: UiConstants.textSubTitleColor,
+                                  ),
+                                ),
+                              )
+                            : Container(),
                       ],
                     ),
                   ),
@@ -117,9 +138,19 @@ class _HomeState extends State<Home> {
                           Icons.history_rounded,
                           size: 35,
                           color: currentTab == 3
-                              ? Color(0xFF44A0EB)
-                              : Color.fromARGB(255, 201, 201, 201),
+                              ? UiConstants.buttonFocusColor
+                              : UiConstants.buttonUnfocusColor,
                         ),
+                        currentTab == 3
+                            ? Text(
+                                "Logs",
+                                style: GoogleFonts.montserrat(
+                                  textStyle: TextStyle(
+                                    color: UiConstants.textSubTitleColor,
+                                  ),
+                                ),
+                              )
+                            : Container(),
                       ],
                     ),
                   ),
@@ -138,9 +169,19 @@ class _HomeState extends State<Home> {
                           Icons.person_rounded,
                           size: 35,
                           color: currentTab == 4
-                              ? Color(0xFF44A0EB)
-                              : Color.fromARGB(255, 201, 201, 201),
+                              ? UiConstants.buttonFocusColor
+                              : UiConstants.buttonUnfocusColor,
                         ),
+                        currentTab == 4
+                            ? Text(
+                                "Profile",
+                                style: GoogleFonts.montserrat(
+                                  textStyle: TextStyle(
+                                    color: UiConstants.textSubTitleColor,
+                                  ),
+                                ),
+                              )
+                            : Container(),
                       ],
                     ),
                   ),

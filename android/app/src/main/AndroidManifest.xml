@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.olsis">
    <application
-        android:label="olsis"
+        android:label="OLSIS"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
