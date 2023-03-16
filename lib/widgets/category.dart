@@ -15,23 +15,27 @@ class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(right: 15, top: 5),
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
-      decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 231, 246, 252),
-        boxShadow: [
-          BoxShadow(
-            offset: Offset(.3, .3),
-            color: Colors.black12,
-            spreadRadius: .5,
-            blurRadius: 1.0,
-          ),
-        ],
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-      ),
+      margin: const EdgeInsets.only(right: 17, top: 5),
       child: Column(children: [
-        widget.image,
-        const SizedBox(height: 3),
+        Container(
+          height: 70,
+          width: 70,
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 231, 246, 252),
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(.3, .3),
+                color: Colors.black12,
+                spreadRadius: .5,
+                blurRadius: 1.0,
+              ),
+            ],
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          child: Center(child: widget.image),
+        ),
+        const SizedBox(height: 10),
         Text(
           widget.title,
           style: GoogleFonts.montserrat(

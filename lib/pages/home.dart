@@ -17,18 +17,22 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int currentTab = 0;
   final List<Widget> screens = [
-    Dashboard(),
-    Payments(),
-    QR(),
-    Logs(),
-    Profile()
+    const Dashboard(),
+    const Payments(),
+    const QR(),
+    const Logs(),
+    const Profile()
   ];
 
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget currentScreen = Dashboard();
+
+  Widget currentScreen = const Dashboard();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: PageStorage(bucket: bucket, child: currentScreen),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFF44A0EB),
@@ -39,7 +43,10 @@ class _HomeState extends State<Home> {
         ),
         onPressed: () {
           setState(() {
-            currentScreen = QR();
+            if (_scaffoldKey.currentState!.isDrawerOpen) {
+              _scaffoldKey.currentState!.openEndDrawer();
+            }
+            currentScreen = const QR();
             currentTab = 2;
           });
         },
@@ -91,6 +98,10 @@ class _HomeState extends State<Home> {
                     minWidth: 40,
                     onPressed: () {
                       setState(() {
+                        // if (_scaffoldKey.currentState!.isDrawerOpen) {
+                        //   _scaffoldKey.currentState!.openEndDrawer();
+                        // }
+                        Navigator.pop(context);
                         currentScreen = Payments();
                         currentTab = 1;
                       });
@@ -127,6 +138,9 @@ class _HomeState extends State<Home> {
                     minWidth: 40,
                     onPressed: () {
                       setState(() {
+                        if (_scaffoldKey.currentState!.isDrawerOpen) {
+                          _scaffoldKey.currentState!.openEndDrawer();
+                        }
                         currentScreen = Logs();
                         currentTab = 3;
                       });
@@ -158,6 +172,9 @@ class _HomeState extends State<Home> {
                     minWidth: 40,
                     onPressed: () {
                       setState(() {
+                        if (_scaffoldKey.currentState!.isDrawerOpen) {
+                          _scaffoldKey.currentState!.openEndDrawer();
+                        }
                         currentScreen = Profile();
                         currentTab = 4;
                       });

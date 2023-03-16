@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:olsis/widgets/announcement.dart';
 import 'package:olsis/widgets/category.dart';
+import 'package:olsis/widgets/sidebar.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -12,9 +13,13 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  var scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
+      drawer: SidebarMenu(),
       body: SingleChildScrollView(
         child: Column(children: [
           Container(
@@ -41,7 +46,9 @@ class _DashboardState extends State<Dashboard> {
                         height: 40,
                         width: 40,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        scaffoldKey.currentState?.openDrawer();
+                      },
                     ),
                     GestureDetector(
                       child: Badge(
@@ -168,7 +175,7 @@ class _DashboardState extends State<Dashboard> {
                     style: GoogleFonts.dongle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                         height: 1,
                         color: Color.fromARGB(255, 124, 148, 233),
                       ),
@@ -182,16 +189,16 @@ class _DashboardState extends State<Dashboard> {
                         Category(
                           image: Image.asset(
                             "images/balance.png",
-                            height: 40,
-                            width: 40,
+                            height: 45,
+                            width: 45,
                           ),
                           title: "Balance",
                         ),
                         Category(
                           image: Image.asset(
-                            "images/balance.png",
-                            height: 40,
-                            width: 40,
+                            "images/enrollment.png",
+                            height: 45,
+                            width: 45,
                           ),
                           title: "Enrollment",
                         ),
