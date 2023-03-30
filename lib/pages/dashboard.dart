@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:olsis/widgets/announcement.dart';
 import 'package:olsis/widgets/category.dart';
-import 'package:olsis/widgets/sidebar.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -19,7 +18,6 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      drawer: SidebarMenu(),
       body: SingleChildScrollView(
         child: Column(children: [
           Container(
@@ -38,18 +36,19 @@ class _DashboardState extends State<Dashboard> {
               Container(
                 padding: const EdgeInsets.only(left: 15, right: 25),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    GestureDetector(
-                      child: Container(
-                        child: Image.asset('images/menu.png'),
-                        height: 40,
-                        width: 40,
-                      ),
-                      onTap: () {
-                        scaffoldKey.currentState?.openDrawer();
-                      },
-                    ),
+                    // GestureDetector(
+                    //   child: Container(
+                    //     child: Image.asset('images/menu.png'),
+                    //     height: 40,
+                    //     width: 40,
+                    //   ),
+                    //   onTap: () {
+                    //     scaffoldKey.currentState?.openDrawer();
+                    //   },
+                    // ),
                     GestureDetector(
                       child: Badge(
                         showBadge: true,

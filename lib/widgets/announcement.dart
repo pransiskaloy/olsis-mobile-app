@@ -8,7 +8,8 @@ class Announcement extends StatefulWidget {
   String? title;
   String? content;
 
-  Announcement({this.day, this.month, this.title, this.content});
+  Announcement({Key? key, this.day, this.month, this.title, this.content})
+      : super(key: key);
 
   @override
   State<Announcement> createState() => _AnnouncementState();
@@ -30,10 +31,10 @@ class _AnnouncementState extends State<Announcement> {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            offset: Offset(6, 6),
-            color: Colors.black12,
+            offset: Offset(.5, .5),
+            color: Color.fromARGB(255, 240, 240, 240),
             spreadRadius: 1,
-            blurRadius: 10.0,
+            blurRadius: 3,
           ),
         ],
         borderRadius: BorderRadius.all(Radius.circular(20)),

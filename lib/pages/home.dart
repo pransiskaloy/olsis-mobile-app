@@ -24,28 +24,22 @@ class _HomeState extends State<Home> {
     const Profile()
   ];
 
-  var _scaffoldKey = GlobalKey<ScaffoldState>();
-
   final PageStorageBucket bucket = PageStorageBucket();
 
   Widget currentScreen = const Dashboard();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       body: PageStorage(bucket: bucket, child: currentScreen),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xFF44A0EB),
-        child: Container(
+        backgroundColor: const Color(0xFF44A0EB),
+        child: SizedBox(
           height: 35,
           width: 35,
           child: Image.asset('images/qr.png'),
         ),
         onPressed: () {
           setState(() {
-            if (_scaffoldKey.currentState!.isDrawerOpen) {
-              _scaffoldKey.currentState!.openEndDrawer();
-            }
             currentScreen = const QR();
             currentTab = 2;
           });
@@ -53,7 +47,7 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         notchMargin: 10,
         child: Container(
           height: 60,
@@ -98,10 +92,6 @@ class _HomeState extends State<Home> {
                     minWidth: 40,
                     onPressed: () {
                       setState(() {
-                        // if (_scaffoldKey.currentState!.isDrawerOpen) {
-                        //   _scaffoldKey.currentState!.openEndDrawer();
-                        // }
-                        Navigator.pop(context);
                         currentScreen = Payments();
                         currentTab = 1;
                       });
@@ -118,7 +108,7 @@ class _HomeState extends State<Home> {
                         ),
                         currentTab == 1
                             ? Text(
-                                "Payments",
+                                "Paid",
                                 style: GoogleFonts.montserrat(
                                   textStyle: TextStyle(
                                     color: UiConstants.textSubTitleColor,
@@ -138,9 +128,6 @@ class _HomeState extends State<Home> {
                     minWidth: 40,
                     onPressed: () {
                       setState(() {
-                        if (_scaffoldKey.currentState!.isDrawerOpen) {
-                          _scaffoldKey.currentState!.openEndDrawer();
-                        }
                         currentScreen = Logs();
                         currentTab = 3;
                       });
@@ -172,9 +159,6 @@ class _HomeState extends State<Home> {
                     minWidth: 40,
                     onPressed: () {
                       setState(() {
-                        if (_scaffoldKey.currentState!.isDrawerOpen) {
-                          _scaffoldKey.currentState!.openEndDrawer();
-                        }
                         currentScreen = Profile();
                         currentTab = 4;
                       });
