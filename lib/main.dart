@@ -32,8 +32,6 @@ class GetStarted extends StatefulWidget {
 class _GetStartedState extends State<GetStarted> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('Get Started Page')),
-    );
+    return const Center(child: Text('Get Started Page'));
   }
 }

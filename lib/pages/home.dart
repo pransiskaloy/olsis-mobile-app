@@ -78,11 +78,15 @@ class _HomeState extends State<Home> {
                         currentTab == 0
                             ? Text(
                                 "Home",
-                                style: GoogleFonts.montserrat(
-                                  textStyle: TextStyle(
-                                    color: UiConstants.textSubTitleColor,
-                                  ),
-                                ),
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    color: UiConstants.textSubTitleColor)
+                                // GoogleFonts.montserrat(
+                                //   textStyle: TextStyle(
+                                //     color: UiConstants.textSubTitleColor,
+                                //   ),
+                                // )
+                                ,
                               )
                             : Container(),
                       ],
@@ -107,14 +111,16 @@ class _HomeState extends State<Home> {
                               : UiConstants.buttonUnfocusColor,
                         ),
                         currentTab == 1
-                            ? Text(
-                                "Paid",
-                                style: GoogleFonts.montserrat(
-                                  textStyle: TextStyle(
-                                    color: UiConstants.textSubTitleColor,
-                                  ),
-                                ),
-                              )
+                            ? Text("Paid",
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    color: UiConstants.textSubTitleColor)
+                                // GoogleFonts.montserrat(
+                                //   textStyle: TextStyle(
+                                //     color: UiConstants.textSubTitleColor,
+                                //   ),
+                                // ),
+                                )
                             : Container(),
                       ],
                     ),
@@ -143,14 +149,16 @@ class _HomeState extends State<Home> {
                               : UiConstants.buttonUnfocusColor,
                         ),
                         currentTab == 3
-                            ? Text(
-                                "Logs",
-                                style: GoogleFonts.montserrat(
-                                  textStyle: TextStyle(
-                                    color: UiConstants.textSubTitleColor,
-                                  ),
-                                ),
-                              )
+                            ? Text("Logs",
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    color: UiConstants.textSubTitleColor)
+                                //  GoogleFonts.montserrat(
+                                //   textStyle: TextStyle(
+                                //     color: UiConstants.textSubTitleColor,
+                                //   ),
+                                // ),
+                                )
                             : Container(),
                       ],
                     ),
@@ -174,14 +182,16 @@ class _HomeState extends State<Home> {
                               : UiConstants.buttonUnfocusColor,
                         ),
                         currentTab == 4
-                            ? Text(
-                                "Profile",
-                                style: GoogleFonts.montserrat(
-                                  textStyle: TextStyle(
-                                    color: UiConstants.textSubTitleColor,
-                                  ),
-                                ),
-                              )
+                            ? Text("Profile",
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    color: UiConstants.textSubTitleColor)
+                                // GoogleFonts.montserrat(
+                                //   textStyle: TextStyle(
+                                //     color: UiConstants.textSubTitleColor,
+                                //   ),
+                                // ),
+                                )
                             : Container(),
                       ],
                     ),
