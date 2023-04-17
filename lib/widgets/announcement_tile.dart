@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:olsis/widgets/constants.dart';
 
-class Announcement extends StatefulWidget {
+class AnnouncementTile extends StatefulWidget {
   String? day;
   String? month;
   String? title;
   String? content;
 
-  Announcement({Key? key, this.day, this.month, this.title, this.content})
+  AnnouncementTile({Key? key, this.day, this.month, this.title, this.content})
       : super(key: key);
 
   @override
-  State<Announcement> createState() => _AnnouncementState();
+  State<AnnouncementTile> createState() => _AnnouncementTileState();
 }
 
-class _AnnouncementState extends State<Announcement> {
+class _AnnouncementTileState extends State<AnnouncementTile> {
   // String day = "27";
   // String month = "Mar";
   // String title = "TERM BREAK";

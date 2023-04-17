@@ -2,7 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:olsis/pages/notification.dart';
-import 'package:olsis/widgets/announcement.dart';
+import 'package:olsis/widgets/announcement_tile.dart';
 import 'package:olsis/widgets/category.dart';
 
 class Dashboard extends StatefulWidget {
@@ -155,7 +155,7 @@ class _DashboardState extends State<Dashboard> {
                   //Announcement Widget
                   Padding(
                     padding: const EdgeInsets.only(right: 20),
-                    child: Announcement(
+                    child: AnnouncementTile(
                         day: "27",
                         month: "Mar",
                         title: "TERM BREAK",
@@ -227,7 +227,7 @@ Route _createRoute(Widget currentScreen) {
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;
-      const curve = Curves.ease;
+      const curve = Curves.easeInOutCirc;
 
       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 

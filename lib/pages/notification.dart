@@ -10,8 +10,32 @@ class NotificationPage extends StatefulWidget {
 class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("NOTIFICATION"),
+    return Scaffold(
+      appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_new),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          title: const Text(
+            "Notification",
+            style: TextStyle(
+              fontFamily: 'Montserrat',
+            ),
+          )),
+      body: SingleChildScrollView(
+        child: Column(
+          children: const [
+            Center(
+              child: Text(
+                "Notification",
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

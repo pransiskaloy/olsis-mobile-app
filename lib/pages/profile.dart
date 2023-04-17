@@ -112,11 +112,12 @@ class InfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: CircleAvatar(
-        radius: 25,
-        backgroundColor: Colors.white24,
+      leading: const CircleAvatar(
+        radius: 29,
+        backgroundColor: Colors.transparent,
         child: Icon(
           CupertinoIcons.person_alt_circle,
+          size: 55,
           color: Colors.white,
         ),
       ),

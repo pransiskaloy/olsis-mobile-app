@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:olsis/pages/home.dart';
+import 'package:olsis/widgets/splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Container(
-          child: Home(),
+          // child: Home(),
+          child: SplashScreen(),
         ),
       ),
     );

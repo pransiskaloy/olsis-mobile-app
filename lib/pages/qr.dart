@@ -32,18 +32,36 @@ class _QRState extends State<QR> {
               ),
             ),
             child: Center(
-              child: Container(
-                height: 300,
-                width: 300,
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
-                child: QrImage(
-                  data: qrData,
-                  foregroundColor: UiConstants.textTitleColor,
-                  padding: const EdgeInsets.all(30),
-                  size: 300,
-                ),
+              child: Column(
+                children: [
+                  Container(
+                    height: 300,
+                    width: 300,
+                    decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: QrImage(
+                      data: qrData,
+                      foregroundColor: UiConstants.textTitleColor,
+                      padding: const EdgeInsets.all(30),
+                      size: 300,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 50),
+                    child: const Text(
+                      "This QR code is intended for use with the Connict SAS exclusively.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           )
