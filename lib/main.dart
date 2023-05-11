@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:olsis/pages/home.dart';
+import 'package:olsis/pages/login.dart';
 import 'package:olsis/widgets/splash.dart';
 
 void main() {
@@ -13,10 +14,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        canvasColor: Colors.transparent,
+      ),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Container(
-          // child: Home(),
+          // child: LoginPage(),
           child: SplashScreen(),
         ),
       ),

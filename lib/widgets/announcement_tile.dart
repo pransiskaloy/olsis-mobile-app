@@ -16,11 +16,6 @@ class AnnouncementTile extends StatefulWidget {
 }
 
 class _AnnouncementTileState extends State<AnnouncementTile> {
-  // String day = "27";
-  // String month = "Mar";
-  // String title = "TERM BREAK";
-  // String content = "No class until April 19 up to 23";
-
   @override
   Widget build(BuildContext context) {
     return Container(

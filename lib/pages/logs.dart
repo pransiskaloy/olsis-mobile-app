@@ -11,6 +11,7 @@ class _LogsState extends State<Logs> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      backgroundColor: Colors.white,
       body: Center(child: Text("LOGS")),
     );
   }

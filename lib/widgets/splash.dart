@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:olsis/pages/login.dart';
 
 import '../pages/home.dart';
 
@@ -15,7 +16,9 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   startTimer() {
     Timer(const Duration(seconds: 30), () async {
-      Navigator.push(context, MaterialPageRoute(builder: (c) => const Home()));
+      // Navigator.push(context, MaterialPageRoute(builder: (c) => const Home()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (c) => const LoginPage()));
     });
   }
 
@@ -29,6 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(children: [
           Container(

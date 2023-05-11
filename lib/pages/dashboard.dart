@@ -18,6 +18,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       key: scaffoldKey,
       body: SingleChildScrollView(
         child: Column(children: [

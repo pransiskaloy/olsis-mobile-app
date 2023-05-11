@@ -18,6 +18,6 @@ class NotificationTile extends StatefulWidget {
 class _NotificationTileState extends State<NotificationTile> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Text("Notification Tiles");
   }
 }

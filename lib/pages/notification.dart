@@ -11,6 +11,7 @@ class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios_new),
@@ -25,14 +26,7 @@ class _NotificationPageState extends State<NotificationPage> {
       body: SingleChildScrollView(
         child: Column(
           children: const [
-            Center(
-              child: Text(
-                "Notification",
-                style: TextStyle(
-                  fontFamily: 'Montserrat',
-                ),
-              ),
-            ),
+            NotificationPage(),
           ],
         ),
       ),
