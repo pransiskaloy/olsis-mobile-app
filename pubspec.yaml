@@ -40,6 +40,7 @@ dependencies:
   rive: ^0.9.1
   lottie: ^1.2.2
   http: ^0.13.4
+  shared_preferences: ^2.0.13
 
 dev_dependencies:
   flutter_test:
@@ -66,7 +67,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/
-    - assets/animation/splash_loading.json
+    - assets/animation/welcome.json
+    - assets/animation/loading.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -84,7 +86,7 @@ flutter:
       fonts:
         - asset: assets/fonts/Dongle-Regular.ttf
         - asset: assets/fonts/Dongle-Light.ttf
-        - asset: assets/fonts/Dongle-Regular.ttf
+        - asset: assets/fonts/Dongle-Bold.ttf
 
     - family: Montserrat
       fonts:

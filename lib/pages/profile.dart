@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:olsis/widgets/splash.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -11,6 +13,13 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   @override
+  Future<void> setLoggedIn(loggedIn) async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setBool("isLoggedIn", loggedIn);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (c) => const SplashScreen()));
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF4073DE),
@@ -70,7 +79,11 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 SidebarMenuButton(
-                    tap: () {}, ico: Icons.logout_rounded, title: "Logout"),
+                    tap: () {
+                      setLoggedIn(false);
+                    },
+                    ico: Icons.logout_rounded,
+                    title: "Logout"),
               ],
             ),
           ],

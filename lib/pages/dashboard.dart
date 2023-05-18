@@ -59,7 +59,7 @@ class _DashboardState extends State<Dashboard> {
                           '',
                           style: TextStyle(color: Colors.white),
                         ),
-                        child: Container(
+                        child: SizedBox(
                           child: Image.asset('images/notification.png'),
                           height: 25,
                           width: 25,

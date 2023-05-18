@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:olsis/pages/login.dart';
+import 'package:olsis/widgets/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../pages/home.dart';
 
@@ -14,83 +16,86 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  bool? isLoggedIn;
+
   startTimer() {
-    Timer(const Duration(seconds: 30), () async {
-      // Navigator.push(context, MaterialPageRoute(builder: (c) => const Home()));
-      Navigator.push(
-          context, MaterialPageRoute(builder: (c) => const LoginPage()));
+    Timer(const Duration(seconds: 10), () async {
+      if (isLoggedIn == null) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => const LoginPage()));
+      } else {
+        if (isLoggedIn!) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (c) => const Home()));
+        } else {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (c) => const LoginPage()));
+        }
+      }
     });
   }
 
   @override
   void initState() {
     super.initState();
-
+    isLogged();
     startTimer();
+  }
+
+  void isLogged() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    setState(() {
+      isLoggedIn = pref.getBool('isLoggedIn');
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(children: [
-          Container(
-            height: MediaQuery.of(context).size.height * .9,
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.only(top: 250),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(40),
-                bottomRight: Radius.circular(40),
-              ),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage('images/qr_background.png'),
-              ),
+      backgroundColor: UiConstants.buttonFocusColor,
+      body: Column(children: [
+        Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.only(top: 30),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              children: [
+                const SizedBox(height: 50),
+                Container(
+                  padding: const EdgeInsets.only(right: 10),
+                  child:
+                      // Lottie.network('https://assets9.lottiefiles.com/private_files/lf30_TBKozE.json'),
+                      Lottie.asset('assets/animation/welcome.json'),
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                Row(
+                  children: [
+                    const Spacer(),
+                    Image.asset(
+                      "images/sas-logo.png",
+                      height: 80,
+                      width: 80,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Image.asset(
+                      "images/sas-word.png",
+                      height: 150,
+                      width: 150,
+                    ),
+                    const Spacer(),
+                  ],
+                ),
+              ],
             ),
-            child: Center(
-              child: Column(
-                children: [
-                  const Text(
-                    "Welcome to Connict",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Montserrat',
-                      fontSize: 20,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 200,
-                  ),
-                  SizedBox(
-                    height: 120,
-                    child: OverflowBox(
-                      minHeight: 370,
-                      maxHeight: 370,
-                      child: Lottie.network(
-                        'https://assets7.lottiefiles.com/packages/lf20_428q8vok/Morph Loading.json',
-                        // width: 300,
-                        // height: 300,
-                      ),
-                    ),
-                  ),
-                  const Text(
-                    "Loading . . . .",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Montserrat',
-                      fontSize: 20,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
-        ]),
-      ),
+          ),
+        )
+      ]),
     );
   }
 }

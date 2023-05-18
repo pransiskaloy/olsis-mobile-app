@@ -4,6 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
 import 'package:olsis/pages/home.dart';
 import 'package:olsis/utils/auth.dart';
+import 'package:olsis/widgets/loading.dart';
+import 'package:olsis/widgets/splash.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,28 +19,38 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController usernameTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
   bool _passwordVisible = false;
-  bool? _isLogin;
 
   void login(String username, password) async {
     try {
       Response response = await post(
           Uri.parse('https://sas.connict.online/api/login'),
           body: {'username': username, 'password': password});
-
+      final data;
       if (response.statusCode == 200) {
-        final data = jsonDecode(response.body.toString());
+        data = jsonDecode(response.body.toString());
         print(data['token']);
         print('Login successfully');
         print(data);
-        _isLogin = true;
+        setLoggedIn(true);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => const LoadingScreen()));
       } else {
         print('failed');
-        _isLogin = false;
+        data = jsonDecode(response.body.toString());
+        print(response.statusCode);
+        setLoggedIn(false);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => const SplashScreen()));
       }
     } catch (e) {
       print(e.toString());
-      _isLogin = false;
+      setLoggedIn(false);
     }
+  }
+
+  Future<void> setLoggedIn(loggedIn) async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setBool("isLoggedIn", loggedIn);
   }
 
   @override
