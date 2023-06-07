@@ -1,9 +1,11 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:olsis/pages/notification.dart';
-import 'package:olsis/widgets/announcement_tile.dart';
-import 'package:olsis/widgets/category.dart';
+import '../pages/notification.dart';
+import '../utils/assistants/methods.dart';
+import '../utils/global.dart';
+import '../widgets/announcement_tile.dart';
+import '../widgets/category.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -98,10 +100,10 @@ class _DashboardState extends State<Dashboard> {
                       ),
                     ),
                     Text(
-                      'Francis!',
+                      AssistantMethods.getName(userModel.firstname ?? ''),
                       style: GoogleFonts.dongle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 90,
+                        fontSize: 120,
                         textStyle: const TextStyle(
                             color: Color(0xFFD0ECF7), height: 0.7),
                       ),

@@ -1,12 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:olsis/pages/login.dart';
-import 'package:olsis/widgets/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../pages/home.dart';
+import '../utils/assistants/auth.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({Key? key}) : super(key: key);
@@ -16,9 +15,11 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
+  final AuthMethods _authMethods = AuthMethods();
+
   bool? isLoggedIn;
   startTimer() {
-    Timer(const Duration(seconds: 10), () async {
+    Timer(const Duration(seconds: 2), () async {
       if (isLoggedIn == null) {
         Navigator.push(
             context, MaterialPageRoute(builder: (c) => const LoginPage()));
@@ -38,6 +39,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void initState() {
     super.initState();
     isLogged();
+    _authMethods.getUserInfo();
     startTimer();
   }
 
@@ -52,7 +54,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: UiConstants.buttonFocusColor,
-      backgroundColor: const Color(0xFF125E9A),
+      backgroundColor: const Color(0xFF4395E7),
       body: SingleChildScrollView(
         child: Column(children: [
           Container(
@@ -60,53 +62,23 @@ class _LoadingScreenState extends State<LoadingScreen> {
             width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.only(top: 30),
             child: Center(
-              child: Column(
+              child: Row(
                 children: [
-                  const SizedBox(height: 50),
-                  // Lottie.network(
-                  //     'https://assets9.lottiefiles.com/private_files/lf30_TBKozE.json'),
-                  Row(
-                    children: [
-                      const Spacer(),
-                      Image.asset(
-                        "images/sas-logo.png",
-                        height: 80,
-                        width: 80,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Image.asset(
-                        "images/sas-word.png",
-                        height: 150,
-                        width: 150,
-                      ),
-                      const Spacer(),
-                    ],
+                  const Spacer(),
+                  Image.asset(
+                    "images/sas-logo.png",
+                    height: 80,
+                    width: 80,
                   ),
                   const SizedBox(
-                    height: 100,
+                    width: 10,
                   ),
-                  SizedBox(
-                    height: 50,
-                    width: MediaQuery.of(context).size.width * .9,
-                    child: OverflowBox(
-                      minHeight: 300,
-                      maxHeight: 300,
-                      child:
-                          // Lottie.network('https://assets4.lottiefiles.com/packages/lf20_hnizzohr.json',),
-                          Lottie.asset('assets/animation/loading.json'),
-                    ),
+                  Image.asset(
+                    "images/sas-word.png",
+                    height: 150,
+                    width: 150,
                   ),
-                  const Text(
-                    "Loading . . . .",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Montserrat',
-                      fontSize: 20,
-                    ),
-                  ),
+                  const Spacer(),
                 ],
               ),
             ),

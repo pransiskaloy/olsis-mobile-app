@@ -41,6 +41,7 @@ dependencies:
   lottie: ^1.2.2
   http: ^0.13.4
   shared_preferences: ^2.0.13
+  connectivity_plus: ^2.2.1
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +70,7 @@ flutter:
     - images/
     - assets/animation/welcome.json
     - assets/animation/loading.json
+    - assets/animation/network.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

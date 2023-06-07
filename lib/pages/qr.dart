@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:olsis/utils/global.dart';
 import 'package:olsis/widgets/constants.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -10,7 +11,7 @@ class QR extends StatefulWidget {
 }
 
 class _QRState extends State<QR> {
-  String qrData = "1234567890";
+  String qrData = userModel.uuid!;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +36,8 @@ class _QRState extends State<QR> {
               child: Column(
                 children: [
                   Container(
-                    height: 300,
-                    width: 300,
+                    height: 250,
+                    width: 250,
                     decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -48,14 +49,15 @@ class _QRState extends State<QR> {
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 40,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 50),
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: const Text(
                       "This QR code is intended for use with the Connict SAS exclusively.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
+                        fontSize: 20,
                         color: Colors.white,
                         fontFamily: 'Montserrat',
                       ),

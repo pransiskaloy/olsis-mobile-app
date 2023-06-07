@@ -1,12 +1,12 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart';
-import 'package:olsis/pages/home.dart';
-import 'package:olsis/utils/auth.dart';
-import 'package:olsis/widgets/loading.dart';
-import 'package:olsis/widgets/splash.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../utils/assistants/auth.dart';
+
+import 'dart:async';
+import 'dart:developer' as developer;
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/services.dart';
+import '../widgets/bottomModal.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,47 +16,66 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final AuthMethods _authMethods = AuthMethods();
   TextEditingController usernameTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
   bool _passwordVisible = false;
 
-  void login(String username, password) async {
-    try {
-      Response response = await post(
-          Uri.parse('https://sas.connict.online/api/login'),
-          body: {'username': username, 'password': password});
-      final data;
-      if (response.statusCode == 200) {
-        data = jsonDecode(response.body.toString());
-        print(data['token']);
-        print('Login successfully');
-        print(data);
-        setLoggedIn(true);
-        Navigator.push(
-            context, MaterialPageRoute(builder: (c) => const LoadingScreen()));
-      } else {
-        print('failed');
-        data = jsonDecode(response.body.toString());
-        print(response.statusCode);
-        setLoggedIn(false);
-        Navigator.push(
-            context, MaterialPageRoute(builder: (c) => const SplashScreen()));
-      }
-    } catch (e) {
-      print(e.toString());
-      setLoggedIn(false);
-    }
+  ConnectivityResult _connectionStatus = ConnectivityResult.none;
+  final Connectivity _connectivity = Connectivity();
+  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
+  ShowBottomModal showModal = ShowBottomModal();
+
+  @override
+  void initState() {
+    super.initState();
+    initConnectivity();
+
+    _connectivitySubscription =
+        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
   }
 
-  Future<void> setLoggedIn(loggedIn) async {
-    final SharedPreferences pref = await SharedPreferences.getInstance();
-    pref.setBool("isLoggedIn", loggedIn);
+  @override
+  void dispose() {
+    _connectivitySubscription.cancel();
+    super.dispose();
+  }
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  Future<void> initConnectivity() async {
+    late ConnectivityResult result;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      result = await _connectivity.checkConnectivity();
+    } on PlatformException catch (e) {
+      developer.log('Couldn\'t check connectivity status', error: e);
+      return;
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) {
+      return Future.value(null);
+    }
+
+    return _updateConnectionStatus(result);
+  }
+
+  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
+    setState(() {
+      _connectionStatus = result;
+      if (_connectionStatus.toString() == "ConnectivityResult.none") {
+        showModal.bottomModal(context, 'assets/animation/network.json',
+            "DISCONNECTED", "Please check your internet connection!");
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -239,11 +258,16 @@ class _LoginPageState extends State<LoginPage> {
             ),
             ElevatedButton(
               onPressed: () {
-                login(usernameTextEditingController.text,
-                    passwordTextEditingController.text);
-
-                // Navigator.push(
-                //     context, MaterialPageRoute(builder: (c) => const Home()));
+                if (_connectionStatus.toString() != "ConnectivityResult.none") {
+                  _authMethods.login(usernameTextEditingController.text,
+                      passwordTextEditingController.text, context);
+                } else {
+                  showModal.bottomModal(
+                      context,
+                      'assets/animation/network.json',
+                      "DISCONNECTED",
+                      "Please check your internet connection!");
+                }
               },
               style: ElevatedButton.styleFrom(
                 primary: const Color(0xFF4F6CAD),

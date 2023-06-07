@@ -7,6 +7,7 @@ import 'package:olsis/widgets/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../pages/home.dart';
+import '../utils/assistants/auth.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -16,10 +17,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final AuthMethods _authMethods = AuthMethods();
   bool? isLoggedIn;
 
   startTimer() {
-    Timer(const Duration(seconds: 10), () async {
+    Timer(const Duration(seconds: 5), () async {
       if (isLoggedIn == null) {
         Navigator.push(
             context, MaterialPageRoute(builder: (c) => const LoginPage()));
@@ -39,6 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     isLogged();
+    _authMethods.getUserInfo();
     startTimer();
   }
 

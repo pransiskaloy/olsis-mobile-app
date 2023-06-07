@@ -1,56 +1,49 @@
-Flutter version 2.10.0 - 2/10/2022 - 14 months ago (Current Month of May)
+Flutter version 2.10.0 - 2/10/2022 - 15 months ago (Current Month of June)
 
 
 response.statusCode == 200
 
-status: Request was succesful., 
-message: null, 
-data: 
-    {
-        user: 
-            {
-                users_uuid: 608a2155-65a0-4f2d-ae1d-c3cbab73bda2, 
-                firstname: parent Vesta, 
-                middlename: null, 
-                lastname: Oberbrunner, 
-                sex: Female, 
-                address: 65/23 Considine Mission, Cabagan 3614 Nueva Vizcaya, 
-                date_of_birth: 1997-07-24, place_of_birth: 
-                Cotabato City, contact_no: 09551611462, 
-                email: creilly@example.org, 
-                username: parent, 
-                status_id: 1, 
-                student_id: null, 
-                user_image: null, 
-                olsis_ref_sac: null, 
-                olsis_ref_table: null, 
-                olsis_ref_id: null, 
-                token: 
-                    {
-                        name: parent, 
-                        abilities: [PersonalLogs, ChildrenLogs], 
-                        expires_at: null, 
-                        tokenable_id: 1, 
-                        tokenable_type: App\Models\User, 
-                        updated_at: 2023-05-15T12:28:55.000000Z, 
-                        created_at: 2023-05-15T12:28:55.000000Z, 
-                        id: 4
-                    }, 
-                user_type: 
-                    {
-                        title: Parent
-                    }
-                , school: 
-                    {
-                        name: Connict, 
-                        description: Et animi quo incidunt et aliquam ut., 
-                        address: Makati, 
-                        logo: connict_logo.png, 
-                        with_sims: 0, with_idmaker: 0
-                    }
-            }, 
-        plaintext: 4|yHbDKcB7alVTLX0IBzWVa516h2Quu1aN4akl41JZ
-    }
+{
+	"status": "Request was succesful.",
+	"message": null,
+	"data": {
+		user: 
+		{
+			users_uuid: 608a2155-65a0-4f2d-ae1d-c3cbab73bda2, 
+			firstname: parent Vesta, 
+			middlename: null, 
+			lastname: Oberbrunner, 
+			sex: Female, 
+			address: 65/23 Considine Mission, Cabagan 3614 Nueva Vizcaya, 
+			date_of_birth: 1997-07-24, 
+			place_of_birth: Cotabato City, 
+			contact_no: 09551611462, 
+			email: creilly@example.org, 
+			username: parent, 
+			status_id: 1, 
+			user_image: null, 
+			olsis_ref_sac: null, 
+			olsis_ref_table: null, 
+			olsis_ref_id: null, 
+			token: 
+			{
+				abilities: [PersonalLogs, ChildrenLogs], 
+				plainText: 28|7aGqT2gwjT4TkDhrHjKbGqIEIvwpYaKxLI9y2P6G
+			}, 
+			user_type: {
+				title: Parent
+			}, 
+			school: {
+				name: Connict, 
+				description: Et animi quo incidunt et aliquam ut., 
+				address: Makati, 
+				logo: connict_logo.png, 
+				with_sims: 0, 
+				with_idmaker: 0
+			}
+		}
+	}
+}
 
 response.statusCode == 401
 
