@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:olsis/pages/home.dart';
-import 'package:olsis/pages/login.dart';
 import 'package:olsis/widgets/splash.dart';
 
 void main() {
@@ -19,26 +17,9 @@ class MyApp extends StatelessWidget {
         canvasColor: Colors.transparent,
       ),
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Container(
-          // child: LoginPage(),
-          child: SplashScreen(),
-        ),
+      home: const Scaffold(
+        body: SplashScreen(),
       ),
     );
-  }
-}
-
-class GetStarted extends StatefulWidget {
-  const GetStarted({Key? key}) : super(key: key);
-
-  @override
-  State<GetStarted> createState() => _GetStartedState();
-}
-
-class _GetStartedState extends State<GetStarted> {
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('Get Started Page'));
   }
 }

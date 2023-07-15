@@ -1,0 +1,173 @@
+Flutter version 2.10.0 - 2/10/2022 - 16 months ago (As of July)
+BundleID: com.olsis.sas
+App Name: SAS OLSIS
+
+
+
+SharedPreferences pref
+	[
+		pref.setString('childrenJsonKey', jsonData);
+		pref.setString('childQrJsonKey', jsonData);
+		pref.setString('userJsonKey', jsonData);
+		pref.setBool("isLoggedIn", loggedIn);
+		pref.setString("token", token);
+	]
+
+response.statusCode == 200
+
+LOGIN 
+{
+	"status": "Request was succesful.",
+	"message": null,
+	"data": {
+		user: {
+			users_uuid: 608a2155-65a0-4f2d-ae1d-c3cbab73bda2, 
+			firstname: parent Vesta, 
+			middlename: null, 
+			lastname: Oberbrunner, 
+			sex: Female, 
+			address: 65/23 Considine Mission, Cabagan 3614 Nueva Vizcaya, 
+			date_of_birth: 1997-07-24, 
+			place_of_birth: Cotabato City, 
+			contact_no: 09551611462, 
+			email: creilly@example.org, 
+			username: parent, 
+			status_id: 1, 
+			user_image: 608a2155-65a0-4f2d-ae1d-c3cbab73bda2.png, 
+			olsis_ref_sac: null, 
+			olsis_ref_table: null, 
+			olsis_ref_id: null, 
+			token: {
+				abilities: [
+					PersonalLogs, 
+					ChildrenLogs
+					], 
+				plainText: 59|5SwyUjdzAM0of6MGjsA3iT2NBkLDcQ00Ip23J0As}, 
+				user_type: {
+					title: Parent
+					}, 
+				school: {
+					name: Connict, 
+					description: Et animi quo incidunt et aliquam ut.,
+					address: Makati, 
+					logo: connict_logo.png, 
+					with_sims: 0, 
+					with_idmaker: 0}}}}
+
+response.statusCode == 401
+
+status: Request was Error..., 
+message: Invalid Credentials, 
+data:
+
+UserAffiliate
+{
+	"status":"Request was succesful.",
+	"message":null,
+	"data":{
+		"UserAffiliates":[
+			{
+				"qla_is_notified":"1",
+				"childname":{
+					"child_id":"2c967a7e-6979-43a2-bec3-60dac80c42bd",
+					"firstname":"student Paula"
+					,"lastname":"McGlynn"
+				}
+			},
+			{
+				"qla_is_notified":"1",
+				"childname":{
+					"child_id":"43453ad7-30e9-41ee-916f-c04e964d7dfa",
+					"firstname":"Kris",
+					"lastname":"Rutherford",
+					"moreDetails":{
+						"student_id":"connict-70295",
+						"course":"Grade 12-ABM",
+						"level":"Nursery 1",
+						"sex":"Female"
+						}
+					}
+				},
+				
+				{
+					"qla_is_notified":"1",
+					"childname":{
+						"child_id":"0260dab5-ee18-4a49-8470-009c0bff9aed",
+						"firstname":"Murray",
+						"lastname":"Farrell",
+						"moreDetails":{
+							"student_id":"connict-70295",
+							"course":"Grade 12-ABM",
+							"level":"Nursery 1",
+							"sex":"Female"
+						}
+					}
+				}
+
+{"status":"Request was succesful.",
+"message":null,"data":{
+	"ChildDetails":{
+		"firstname":"Derick",
+		"lastname":"Ziemann"
+		},"ChildQRLogs":[{
+			"log_time":"02:37:04",
+			"log_date":"2023-04-22",
+			"parent_viewed":"0",
+			"student_viewed":"0",
+			"room_name":{
+				"title":"Main Library",
+				"created_by":"1",
+				"created_at":"2023-04-29T12:23:23.000000Z",
+				"updated_by":null,
+				"updated_at":null},
+					"log_type":{"
+				title":"in"
+				}},{"log_time":"11:00:41","log_date":"2023-03-09","parent_viewed":"0","student_viewed":"0","room_name":{"title":"BE 911","created_by":"1","created_at":"2023-04-29T12:23:23.000000Z","updated_by":null,"updated_at":null},"log_type":{"title":"in"}},{"log_time":"19:56:34","log_date":"2023-01-05","parent_viewed":"0","student_viewed":"0","room_name":{"title":"BE 911","created_by":"1","created_at":"2023-04-29T12:23:23.000000Z","updated_by":null,"updated_at":null},"log_type":{"title":"in"}},{"log_time":"00:47:54","log_date":"2023-01-14","parent_viewed":"0","student_viewed":"0","room_name":{"title":"Main Library","created_by":"1","created_at":"2023
+
+
+getAnnouncements
+
+{
+	"status":"Request was succesful.",
+	"message":null,
+	"data":{
+		"announcement":[
+			{
+				"title":"Happy Araw ng Kiblawan",
+				"description":"Happy Araw ng Kiblawan",
+				"status_id":"1",
+				"created_at":"2023-06-12T17:44:11.000000Z"
+			},
+			{
+				"title":null,
+				"description":"Covid Protocol. Always Wash your Hand.",
+				"status_id":"0",
+				"created_at":"2023-04-29T12:23:23.000000Z"
+			},
+			{
+				"title":null,
+				"description":"Welcome Sir Ryan",
+				"status_id":"0",
+				"created_at":"2023-04-29T12:23:23.000000Z"
+			},
+			{
+				"title":"esse qui animi ipsam non",
+				"description":"Hic deserunt repudiandae et quae quia ut doloribus.",
+				"status_id":"0",
+				"created_at":"2023-04-29T12:23:23.000000Z"
+			},
+			{
+				"title":"rerum qui nobis",
+				"description":"Et et vitae perspiciatis eligendi qui et et ea.",
+				"status_id":"0",
+				"created_at":"2023-04-29T12:23:23.000000Z"
+			},
+			{
+				"title":"cumque dolores amet illum voluptatem perspiciatis",
+				"description":"Placeat ea et soluta illo debitis.",
+				"status_id":"0",
+				"created_at":"2023-04-29T12:23:23.000000Z"
+			}
+		]
+	}
+}

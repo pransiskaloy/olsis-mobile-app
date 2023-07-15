@@ -2,6 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../pages/notification.dart';
+import '../utils/assistants/auth.dart';
 import '../utils/assistants/methods.dart';
 import '../utils/global.dart';
 import '../widgets/announcement_tile.dart';
@@ -16,6 +17,15 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
+  // final AuthMethods _authMethods = AuthMethods();
+  final AssistantMethods _assistantMethods = AssistantMethods();
+
+  // @override
+  // void initState() {
+  //   super.initState();
+
+  //   _authMethods.getAnnouncement(context);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -43,16 +53,6 @@ class _DashboardState extends State<Dashboard> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    // GestureDetector(
-                    //   child: Container(
-                    //     child: Image.asset('images/menu.png'),
-                    //     height: 40,
-                    //     width: 40,
-                    //   ),
-                    //   onTap: () {
-                    //     scaffoldKey.currentState?.openDrawer();
-                    //   },
-                    // ),
                     GestureDetector(
                       child: Badge(
                         showBadge: true,
@@ -159,10 +159,12 @@ class _DashboardState extends State<Dashboard> {
                   Padding(
                     padding: const EdgeInsets.only(right: 20),
                     child: AnnouncementTile(
-                        day: "27",
-                        month: "Mar",
-                        title: "TERM BREAK",
-                        content: "No class until April 19 up to 23"),
+                        day: _assistantMethods
+                            .formatDay(announcementModel.createdAt!),
+                        month: _assistantMethods
+                            .formatMonth(announcementModel.createdAt!),
+                        title: announcementModel.title,
+                        content: announcementModel.description),
                   ),
                 ],
               ),

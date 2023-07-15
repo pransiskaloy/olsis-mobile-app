@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:olsis/pages/login.dart';
 import 'package:olsis/widgets/constants.dart';
+import 'package:olsis/widgets/getStarted.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../pages/home.dart';
@@ -23,8 +24,8 @@ class _SplashScreenState extends State<SplashScreen> {
   startTimer() {
     Timer(const Duration(seconds: 5), () async {
       if (isLoggedIn == null) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (c) => const LoginPage()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (c) => const GetStartedScreen()));
       } else {
         if (isLoggedIn!) {
           Navigator.push(
@@ -41,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     isLogged();
-    _authMethods.getUserInfo();
+    // _authMethods.getUserInfo();
     startTimer();
   }
 
@@ -50,6 +51,10 @@ class _SplashScreenState extends State<SplashScreen> {
     setState(() {
       isLoggedIn = pref.getBool('isLoggedIn');
     });
+    if (isLoggedIn == true) {
+      _authMethods.getUserInfo();
+      _authMethods.getAnnouncement(context);
+    }
   }
 
   @override

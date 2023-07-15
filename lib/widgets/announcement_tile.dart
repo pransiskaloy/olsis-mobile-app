@@ -16,6 +16,21 @@ class AnnouncementTile extends StatefulWidget {
 }
 
 class _AnnouncementTileState extends State<AnnouncementTile> {
+  int? strCount;
+  String? strContent;
+  int? titleCount;
+  String? titleContent;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    strCount = widget.content?.length;
+    strContent = widget.content;
+    titleCount = widget.title?.length;
+    titleContent = widget.title;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -73,7 +88,9 @@ class _AnnouncementTileState extends State<AnnouncementTile> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              widget.title ?? "",
+              (titleCount! > 19
+                  ? titleContent!.substring(0, 10) + "..."
+                  : titleContent!),
               style: GoogleFonts.montserrat(
                 fontWeight: FontWeight.bold,
                 fontSize: 27,
@@ -84,7 +101,9 @@ class _AnnouncementTileState extends State<AnnouncementTile> {
               ),
             ),
             Text(
-              widget.content?.substring(0, 20) ?? "",
+              (strCount! > 19
+                  ? strContent!.substring(0, 15) + "..."
+                  : strContent!),
               style: GoogleFonts.montserrat(
                 fontWeight: FontWeight.w300,
                 fontSize: 17,

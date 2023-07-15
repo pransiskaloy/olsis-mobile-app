@@ -43,7 +43,7 @@ class _QRState extends State<QR> {
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     child: QrImage(
                       data: qrData,
-                      foregroundColor: UiConstants.textTitleColor,
+                      foregroundColor: UiConstants.qrColor,
                       padding: const EdgeInsets.all(30),
                       size: 300,
                     ),
@@ -54,7 +54,7 @@ class _QRState extends State<QR> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: const Text(
-                      "This QR code is intended for use with the Connict SAS exclusively.",
+                      "This QR code is intended for use with the SAS exclusively.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 20,

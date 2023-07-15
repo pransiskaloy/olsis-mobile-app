@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:olsis/pages/logsChildren.dart';
+import 'package:olsis/pages/logsPersonal.dart';
 import 'package:olsis/pages/payment.dart';
 import 'package:olsis/pages/dashboard.dart';
 import 'package:olsis/pages/logs.dart';
 import 'package:olsis/pages/profile.dart';
 import 'package:olsis/pages/qr.dart';
+import 'package:olsis/utils/global.dart';
 import 'package:olsis/widgets/constants.dart';
+
+import '../utils/assistants/auth.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -15,6 +20,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final AuthMethods _authMethods = AuthMethods();
   int currentTab = 0;
   final List<Widget> screens = [
     const Dashboard(),
@@ -27,6 +33,14 @@ class _HomeState extends State<Home> {
   final PageStorageBucket bucket = PageStorageBucket();
 
   Widget currentScreen = const Dashboard();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _authMethods.getAnnouncement(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +64,7 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         notchMargin: 10,
-        child: Container(
+        child: SizedBox(
           height: 60,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,7 +76,7 @@ class _HomeState extends State<Home> {
                     minWidth: 40,
                     onPressed: () {
                       setState(() {
-                        currentScreen = Dashboard();
+                        currentScreen = const Dashboard();
                         currentTab = 0;
                       });
                     },
@@ -97,7 +111,7 @@ class _HomeState extends State<Home> {
                     minWidth: 40,
                     onPressed: () {
                       setState(() {
-                        currentScreen = Payments();
+                        currentScreen = const Payments();
                         currentTab = 1;
                       });
                     },
@@ -135,7 +149,12 @@ class _HomeState extends State<Home> {
                     minWidth: 40,
                     onPressed: () {
                       setState(() {
-                        currentScreen = Logs();
+                        currentScreen = userModel.userType == "Parent"
+                            ?
+                            // const LogsChildren()
+                            const Logs()
+                            : LogsPersonal(
+                                name: userModel.firstname, id: userModel.uuid);
                         currentTab = 3;
                       });
                     },
@@ -168,7 +187,7 @@ class _HomeState extends State<Home> {
                     minWidth: 40,
                     onPressed: () {
                       setState(() {
-                        currentScreen = Profile();
+                        currentScreen = const Profile();
                         currentTab = 4;
                       });
                     },

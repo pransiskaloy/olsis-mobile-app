@@ -65,11 +65,11 @@ class _LoginPageState extends State<LoginPage> {
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
     setState(() {
       _connectionStatus = result;
-      if (_connectionStatus.toString() == "ConnectivityResult.none") {
-        showModal.bottomModal(context, 'assets/animation/network.json',
-            "DISCONNECTED", "Please check your internet connection!");
-      }
     });
+    if (_connectionStatus.toString() == "ConnectivityResult.none") {
+      showModal.bottomModal(context, 'assets/animation/network.json',
+          "DISCONNECTED", "Please check your internet connection!");
+    }
   }
 
   @override

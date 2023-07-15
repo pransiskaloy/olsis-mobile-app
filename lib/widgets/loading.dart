@@ -39,7 +39,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void initState() {
     super.initState();
     isLogged();
-    _authMethods.getUserInfo();
     startTimer();
   }
 
@@ -48,6 +47,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
     setState(() {
       isLoggedIn = pref.getBool('isLoggedIn');
     });
+    if (isLoggedIn == true) {
+      _authMethods.getUserInfo();
+    }
   }
 
   @override
@@ -64,7 +66,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
             child: Center(
               child: Row(
                 children: [
-                  const Spacer(),
                   Image.asset(
                     "images/sas-logo.png",
                     height: 80,
@@ -74,11 +75,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
                     width: 10,
                   ),
                   Image.asset(
-                    "images/sas-word.png",
+                    "images/sas-wordv2.png",
                     height: 150,
                     width: 150,
                   ),
-                  const Spacer(),
                 ],
               ),
             ),

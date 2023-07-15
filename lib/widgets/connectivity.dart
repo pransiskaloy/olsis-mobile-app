@@ -1,58 +1,67 @@
-// import 'dart:async';
-// import 'dart:developer' as developer;
-// import 'package:connectivity_plus/connectivity_plus.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
-// import 'package:edriver/widgets/bottomModal.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-// class CheckInternetConnectivity {
-//   ConnectivityResult _connectionStatus = ConnectivityResult.none;
-//   final Connectivity _connectivity = Connectivity();
-//   late StreamSubscription<ConnectivityResult> _connectivitySubscription;
-//   ShowBottomModal showModal = ShowBottomModal();
+class ConnectionLost extends StatefulWidget {
+  String? title;
+  String? path;
+  String? info;
+  ConnectionLost({Key? key, this.title, this.path, this.info})
+      : super(key: key);
 
-//   @override
-//   void initState() {
-//     super.initState();
-//     initConnectivity();
+  @override
+  State<ConnectionLost> createState() => _ConnectionLostState();
+}
 
-//     _connectivitySubscription =
-//         _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
-//   }
-
-//   @override
-//   void dispose() {
-//     _connectivitySubscription.cancel();
-//     super.dispose();
-//   }
-
-//   // Platform messages are asynchronous, so we initialize in an async method.
-//   Future<void> initConnectivity() async {
-//     late ConnectivityResult result;
-//     // Platform messages may fail, so we use a try/catch PlatformException.
-//     try {
-//       result = await _connectivity.checkConnectivity();
-//     } on PlatformException catch (e) {
-//       developer.log('Couldn\'t check connectivity status', error: e);
-//       return;
-//     }
-
-//     // If the widget was removed from the tree while the asynchronous platform
-//     // message was in flight, we want to discard the reply rather than calling
-//     // setState to update our non-existent appearance.
-//     if (!mounted) {
-//       return Future.value(null);
-//     }
-
-//     return _updateConnectionStatus(result);
-//   }
-
-//   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
-//     setState(() {
-//       _connectionStatus = result;
-//       print(_connectionStatus.toString());
-//       if (_connectionStatus.toString() == "ConnectivityResult.none") {
-//         showModal.bottomModal(context, 'images/network.json');
-//       }
-//     });
-//   }
+class _ConnectionLostState extends State<ConnectionLost> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+      height: MediaQuery.of(context).size.height,
+      color: Colors.white,
+      child: Center(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 50,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Image.asset(widget.path!),
+            const SizedBox(
+              height: 20,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              widget.title!,
+              style: GoogleFonts.dongle(
+                fontWeight: FontWeight.bold,
+                textStyle: const TextStyle(
+                    color: Color.fromARGB(255, 66, 66, 66),
+                    height: 0.5,
+                    fontSize: 60),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Text(
+              widget.info!,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.dongle(
+                fontWeight: FontWeight.w100,
+                textStyle: const TextStyle(
+                    color: Color.fromARGB(255, 105, 103, 103),
+                    height: 0.5,
+                    fontSize: 40),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -1,7 +1,11 @@
 import 'dart:convert';
+import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:intl/intl.dart';
+import 'package:olsis/utils/assistants/methods.dart';
 import 'package:olsis/utils/global.dart';
+import 'package:olsis/utils/model/announcement_model.dart';
 import 'package:olsis/utils/model/school_model.dart';
 import 'package:olsis/widgets/toaster.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -58,6 +62,7 @@ class AuthMethods {
         setLoggedIn(true, data['data']['user']['token']['plainText'],
             response.body.toString());
         saveUserInfo(data);
+        // getAnnouncement(data['data']['user']['token']['plainText'], context);
         Navigator.push(
             context, MaterialPageRoute(builder: (c) => const LoadingScreen()));
       } else {
@@ -75,24 +80,65 @@ class AuthMethods {
 
   Future<void> setLoggedIn(loggedIn, token, jsonData) async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
-    // var data = {};
-    // Response? response;
+
     pref.setString('userJsonKey', jsonData);
     pref.setBool("isLoggedIn", loggedIn);
     pref.setString("token", token);
+  }
 
+  Future<void> getUserInfo() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    // var data = {};
+    // Response? response;
+    String data = pref.getString('userJsonKey')!;
+    if (data.isNotEmpty) {
+      Map<String, dynamic> storedJsonData = jsonDecode(data);
+      saveUserInfo(storedJsonData);
+    }
     // response = await post(Uri.parse('https://sas.connict.online/api/userImage'),
     //     headers: {'Authorization': 'Bearer $token'});
     // data = jsonDecode(response.body.toString());
     // print(data);
   }
 
-  Future<void> getUserInfo() async {
-    final SharedPreferences pref = await SharedPreferences.getInstance();
-    String data = pref.getString('userJsonKey')!;
-    if (data.isNotEmpty) {
-      Map<String, dynamic> storedJsonData = jsonDecode(data);
-      saveUserInfo(storedJsonData);
+  Future<void> getAnnouncement(context) async {
+    AssistantMethods _assistantMethods = AssistantMethods();
+    String token = await _assistantMethods.getPrefStringData("token");
+    var data = {};
+    try {
+      Response response = await get(
+          Uri.parse('https://sas.connict.online/api/getAnnouncements'),
+          headers: {'Authorization': 'Bearer $token'});
+      data = jsonDecode(response.body.toString());
+      if (response.statusCode == 200) {
+        // this.title, this.description, this.createdAt
+
+        // if ( data['data']['announcement']['status_id']== "1") {
+        //   AnnouncementModel(
+        //       createdAt: data['data']['announcement']['created_at'] ?? "",
+        //       title: data['data']['announcement']['title'] ?? "No Title",
+        //       description: data['data']['announcement']['description'] ?? "",
+        //       statusId: data['data']['announcement']['status_id'] ?? "");
+        // }
+        announcementList = data['data']['announcement'];
+
+        Map<String, dynamic> jsonMap = jsonDecode(response.body.toString());
+        List<dynamic> announcements = jsonMap['data']['announcement'];
+
+        dynamic filteredAnnouncement = announcements.firstWhere(
+            (announcement) => announcement['status_id'] == '1',
+            orElse: () => null);
+
+        announcementModel.createdAt = filteredAnnouncement['created_at'];
+        announcementModel.title = filteredAnnouncement['title'];
+        announcementModel.description = filteredAnnouncement['description'];
+        announcementModel.statusId = filteredAnnouncement['status_id'];
+      } else {
+        _toaster.showToaster(context, "Announcement Load failed!", "fail");
+      }
+    } catch (e) {
+      data = {};
+      _toaster.showToaster(context, "Announcement Load failed!", "fail");
     }
   }
 }

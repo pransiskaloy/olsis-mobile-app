@@ -100,7 +100,6 @@ class _ProfileState extends State<Profile> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _token = (prefs.getString('token') ?? '');
-      print(_token);
     });
   }
 
@@ -130,7 +129,9 @@ class _ProfileState extends State<Profile> {
             ),
             InfoCard(
               name: AssistantMethods.getName(userModel.firstname!),
-              level: "BSIT - 2nd Year",
+              level: userModel.userType == "Parent"
+                  ? schoolModel.name!
+                  : "BSIT - 2nd Year",
             ),
             Column(
               children: [
@@ -182,7 +183,16 @@ class _ProfileState extends State<Profile> {
                 ),
                 sidebarMenuButton(
                     tap: () {
-                      logout(_token);
+                      if (_connectionStatus.toString() ==
+                          "ConnectivityResult.none") {
+                        showModal.bottomModal(
+                            context,
+                            'assets/animation/network.json',
+                            "DISCONNECTED",
+                            "Please check your internet connection!");
+                      } else {
+                        logout(_token);
+                      }
                     },
                     ico: Icons.logout_rounded,
                     title: "Logout"),
@@ -248,6 +258,8 @@ class InfoCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.only(top: 20),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   name,
