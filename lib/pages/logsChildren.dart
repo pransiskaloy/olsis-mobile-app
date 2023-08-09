@@ -74,7 +74,7 @@ class _LogsChildrenState extends State<LogsChildren> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: ,
       appBar: AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
@@ -150,12 +150,6 @@ class _LogsChildrenState extends State<LogsChildren> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          // Image.asset(
-                          //   'images/female.png',
-                          //   width: 70,
-                          //   height: 70,
-                          //   fit: BoxFit.contain,
-                          // ),
                           getChildSex(child),
                           const SizedBox(
                             width: 10,
@@ -185,16 +179,6 @@ class _LogsChildrenState extends State<LogsChildren> {
                   );
                 },
               );
-              // return ListView.builder(
-              //   itemCount: data.length,
-              //   itemBuilder: (context, index) {
-              //     final child = data[index];
-              //     return ListTile(
-              //       title: Text(child['childname']['firstname']),
-              //       // subtitle: Text(message['timestamp']),
-              //     );
-              //   },
-              // );
             }
           },
         )

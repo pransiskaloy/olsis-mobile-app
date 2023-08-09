@@ -74,7 +74,7 @@ class AuthMethods {
       }
     } catch (e) {
       setLoggedIn(false, "none", '');
-      _toaster.showToaster(context, "Please check your credentials!", "fail");
+      _toaster.showToaster(context, e.toString(), "fail");
     }
   }
 
@@ -130,7 +130,7 @@ class AuthMethods {
             orElse: () => null);
 
         announcementModel.createdAt = filteredAnnouncement['created_at'];
-        announcementModel.title = filteredAnnouncement['title'];
+        announcementModel.title = filteredAnnouncement['title'] ?? '[No Title]';
         announcementModel.description = filteredAnnouncement['description'];
         announcementModel.statusId = filteredAnnouncement['status_id'];
       } else {
@@ -139,6 +139,32 @@ class AuthMethods {
     } catch (e) {
       data = {};
       _toaster.showToaster(context, "Announcement Load failed!", "fail");
+    }
+  }
+
+  Future<List<dynamic>> fetchAnnouncements(String connectionResult) async {
+    AssistantMethods _assistantMethods = AssistantMethods();
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    String token = await _assistantMethods.getPrefStringData("token");
+    if (connectionResult != "ConnectivityResult.none") {
+      final response = await get(
+          Uri.parse('https://sas.connict.online/api/getAnnouncements'),
+          headers: {'Authorization': 'Bearer $token'});
+
+      if (response.statusCode == 200) {
+        // API call successful
+        var data = {};
+        data = jsonDecode(response.body);
+        pref.setString('childrenJsonKey', response.body.toString());
+        // print('FETCH CHILD DATA - auth.dart 61');
+        print(data['data']['announcement']);
+        announcementList = data['data']['announcement'];
+        return announcementList;
+      } else {
+        return announcementList;
+      }
+    } else {
+      return announcementList;
     }
   }
 }

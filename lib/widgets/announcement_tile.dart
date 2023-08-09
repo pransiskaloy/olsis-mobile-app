@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:olsis/pages/announcement.dart';
 import 'package:olsis/widgets/constants.dart';
+
+import '../utils/assistants/methods.dart';
+import '../utils/global.dart';
 
 class AnnouncementTile extends StatefulWidget {
   String? day;
@@ -33,6 +37,7 @@ class _AnnouncementTileState extends State<AnnouncementTile> {
 
   @override
   Widget build(BuildContext context) {
+    final AssistantMethods _assistantMethods = AssistantMethods();
     return Container(
       padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
       height: 100,
@@ -123,10 +128,39 @@ class _AnnouncementTileState extends State<AnnouncementTile> {
                   color: Color.fromARGB(255, 201, 201, 201),
                 ),
               ),
+              onTap: () {
+                Navigator.of(context).push(
+                  _createRoute(
+                    AnnouncementPage(
+                        day: widget.day,
+                        month: widget.month,
+                        title: widget.title,
+                        content: widget.content),
+                  ),
+                );
+              },
             )
           ],
         )
       ]),
     );
   }
+}
+
+Route _createRoute(Widget currentScreen) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => currentScreen,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.easeInOutCirc;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }

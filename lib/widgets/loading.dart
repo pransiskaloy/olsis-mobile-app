@@ -49,6 +49,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     });
     if (isLoggedIn == true) {
       _authMethods.getUserInfo();
+      _authMethods.getAnnouncement(context);
     }
   }
 
@@ -64,20 +65,19 @@ class _LoadingScreenState extends State<LoadingScreen> {
             width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.only(top: 30),
             child: Center(
-              child: Row(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset(
                     "images/sas-logo.png",
-                    height: 80,
-                    width: 80,
-                  ),
-                  const SizedBox(
-                    width: 10,
+                    height: MediaQuery.of(context).size.height * .3,
+                    width: MediaQuery.of(context).size.width * .5,
                   ),
                   Image.asset(
                     "images/sas-wordv2.png",
-                    height: 150,
-                    width: 150,
+                    height: 300,
+                    width: MediaQuery.of(context).size.width * .5,
                   ),
                 ],
               ),

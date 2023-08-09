@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:olsis/widgets/loading.dart';
 import 'package:olsis/widgets/splash.dart';
 
 void main() {
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: const Scaffold(
+        // body: LoadingScreen(),
         body: SplashScreen(),
       ),
     );

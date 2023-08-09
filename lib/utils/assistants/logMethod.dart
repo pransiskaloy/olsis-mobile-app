@@ -53,7 +53,7 @@ class LogMethod {
         data = jsonDecode(response.body);
         pref.setString('childQrJsonKey', response.body.toString());
         // print('FETCH CHILD DATA - auth.dart 61');
-        print(response.body.toString());
+        // print(response.body.toString());
         childQrList = data['data']['ChildQRLogs'];
         return childQrList;
       } else {
